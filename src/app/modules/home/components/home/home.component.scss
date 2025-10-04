@@ -1,0 +1,15 @@
+@use '../../../../../assets/styles/consistency';
+
+:host {
+  @extend .routing-component;
+}
+
+.custom-card-width {
+  width: 640px;
+}
+
+.upload-file-btn {
+  width: 132px;
+  margin: 0 auto;
+  padding: 16px;
+}

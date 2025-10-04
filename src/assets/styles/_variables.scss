@@ -1,0 +1,32 @@
+// Bootstrap CSS variables overwrite
+body {
+  --bs-body-font-family: 'Inter', sans-serif;
+  --bs-primary-rgb: 55, 138, 245;
+  --bs-success-rgb: 40, 167, 69;
+
+  .card {
+    --bs-card-border-color: #DEE2E6;
+  }
+
+  .table {
+    --bs-table-hover-bg: #F8FBFF;
+
+    .table-danger {
+      --bs-table-hover-bg: #FFFAFA;
+    }
+  }
+  .pagination{
+    --bs-pagination-active-bg: rgb(var(--bs-primary-rgb));
+  }
+
+
+  .btn {
+    --bs-btn-font-weight: 600;
+  }
+  .btn-primary {
+    --bs-btn-bg: rgb(var(--bs-primary-rgb));
+  }
+  .btn-close {
+    --bs-btn-close-color: #aaaaaa
+  }
+}

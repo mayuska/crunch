@@ -1,0 +1,25 @@
+<ng-template #template let-row="row" let-i="i">
+  <tr
+    [class.table-danger]="hoveredRowPos() === i && !row.valid"
+    (mouseenter)="hoveredRowPos.set(i)"
+    (mouseleave)="hoveredRowPos.set(null)"
+    class="w-100"
+  >
+    <td class="py-2 align-middle">
+      <i class="bi bi-file-earmark-code text-secondary me-2"></i>
+      {{ row?.name }}
+    </td>
+    <td class="py-2 align-middle">{{ row?.displayName }}</td>
+    <td class="py-2 align-middle">{{ row?.description }}</td>
+    <td class="py-2 align-middle">
+      <span class="badge p-2 fw-semibold" [ngClass]="row?.valid ? 'bg-success' : 'bg-danger'">
+        {{ row?.valid ? 'Valid' : 'Not valid' }}
+      </span>
+    </td>
+    <td class="py-2 text-end align-middle">
+      <button class="btn btn-link text-muted px-2" (click)="openDeleteConfirm(row)" aria-label="Delete">
+        <i class="bi bi-trash"></i>
+      </button>
+    </td>
+  </tr>
+</ng-template>

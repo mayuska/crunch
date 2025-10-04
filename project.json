@@ -3,7 +3,7 @@
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "includedScripts": [],
   "projectType": "application",
-  "prefix": "app",
+  "prefix": "crunch",
   "sourceRoot": "./src",
   "tags": [],
   "targets": {
@@ -13,13 +13,18 @@
       "options": {
         "outputPath": "dist/crunch",
         "browser": "./src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": ["zone.js", "src/polyfills.ts"],
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "public"
+          },
+          {
+            "glob": "**/*",
+            "input": "src/assets",
+            "output": "assets"
           }
         ],
         "styles": ["./src/styles.scss"]
@@ -59,7 +64,10 @@
           "buildTarget": "crunch:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "open": true
+      }
     },
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",
@@ -89,6 +97,55 @@
         "port": 4200,
         "staticFilePath": "dist/crunch/browser",
         "spa": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "./.storybook",
+        "browserTarget": "crunch:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/crunch",
+        "configDir": "./.storybook",
+        "browserTarget": "crunch:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c ./.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "crunch:build-storybook",
+        "staticFilePath": "dist/storybook/crunch",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "crunch:build-storybook:ci"
+        }
       }
     }
   }

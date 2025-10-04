@@ -1,0 +1,41 @@
+<div class="modal-backdrop show"></div>
+<div class="modal d-block">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fw-semibold fs-5">Select file</span>
+        <button class="btn-close" aria-label="Close" type="button" (click)="cancel()"></button>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="upload()">
+        <div class="modal-body">
+          <div class="mb-1">
+            <input
+              class="form-control"
+              type="file"
+              accept=".json"
+              (blur)="form.get('file')?.markAsTouched()"
+              (change)="onFileChange($event)"
+              [class.is-invalid]="form.get('file')?.touched && form.get('file')?.invalid"
+            />
+          </div>
+          <div class="mb-1">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Name"
+              formControlName="displayName"
+              [class.is-invalid]="form.get('displayName')?.touched && form.get('displayName')?.invalid"
+            />
+          </div>
+          <div class="mb-1">
+            <input type="text" class="form-control" placeholder="Description" formControlName="description" />
+          </div>
+        </div>
+        <div class="modal-footer justify-content-end">
+          <button type="button" class="btn btn-outline-secondary px-4" (click)="cancel()">Cancel</button>
+          <button type="submit" class="btn btn-primary px-4 ms-2" [disabled]="form.invalid">Upload</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

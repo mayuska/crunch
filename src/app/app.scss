@@ -1,0 +1,11 @@
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // fill screen
+}
+
+.main-content {
+  flex: 1 1 auto;   // take leftover space
+  display: flex;    // so child pages can use flexbox
+  flex-direction: column;
+}

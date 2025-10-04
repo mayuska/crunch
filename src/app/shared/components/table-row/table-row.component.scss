@@ -1,0 +1,19 @@
+:host {
+  display: table-row;
+
+}
+
+.btn-link {
+  text-decoration: none;
+  i {
+    font-size: 1.08em;
+  }
+}
+
+tr {
+  &:not(.invalid-row):hover {
+    > td {
+      background-color: var(--bs-table-hover-bg);
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@use '../../../../../assets/styles/consistency';
+
+:host {
+  @extend .routing-component;
+}
+
+th {
+  font-weight: 600;
+  font-size: 1.06rem;
+  color: var(--bs-table-color);
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid var(--bs-border-color);
+  border-top: 1px solid var(--bs-border-color);
+  text-align: left;
+}
+
+.total-files {
+  font-weight: 600;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.upload-file-btn {
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+

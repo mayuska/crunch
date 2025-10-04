@@ -1,0 +1,38 @@
+<div class="page-container">
+  <div class="d-flex justify-content-between align-items-center px-3 pt-4 page-header">
+    <span class="total-files">{{ filesFacade.totalFiles$ | async }} files</span>
+    <button class="btn btn-primary btn-sm upload-file-btn p-3" type="button" (click)="openUploadDialog()">Upload file</button>
+  </div>
+
+  <div class="px-3 pb-3 table-wrapper">
+    @if (row()) {
+      <table class="table mt-2 mb-0">
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Valid</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (file of paginatedFiles$() | async; track file.id; let i = $index) {
+            <ng-container [ngTemplateOutlet]="row()?.template()" [ngTemplateOutletContext]="{ row: file, i }"> </ng-container>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+  <ngb-pagination
+    [collectionSize]="filesFacade.totalFiles$ | async"
+    [(page)]="currentPage"
+    [pageSize]="pageSize"
+    aria-label="Files pagination"
+  >
+    <ng-template ngbPaginationPrevious><i class="bi bi-chevron-left"></i></ng-template>
+    <ng-template ngbPaginationNext><i class="bi bi-chevron-right"></i></ng-template>
+  </ngb-pagination>
+</div>
+
+<crunch-table-row></crunch-table-row>

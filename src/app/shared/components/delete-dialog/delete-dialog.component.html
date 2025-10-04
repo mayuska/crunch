@@ -1,0 +1,20 @@
+<div class="modal-backdrop show"></div>
+
+<div class="modal d-block">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title fw-semibold fs-5">Confirm file deleting</span>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cancel()"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete the file <b>{{ displayName() }}</b
+        >?
+      </div>
+      <div class="modal-footer justify-content-end">
+        <button type="button" class="btn btn-outline-secondary px-4" (click)="cancel()">Cancel</button>
+        <button type="button" class="btn btn-primary px-4 ms-2" (click)="confirm()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
