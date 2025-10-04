@@ -8,7 +8,10 @@ describe('Files Selectors', () => {
   const createFilesEntity = (id: string, name = '') =>
     ({
       id: id,
-      name: name || `name-${id}`
+      name: name || `name-${id}`,
+      displayName: `displayName-${id}`,
+      valid: true,
+      content: null
     }) as FilesEntity;
 
   let state: FilesPartialState;

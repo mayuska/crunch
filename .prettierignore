@@ -1,6 +1,22 @@
-# Add files here to ignore them from prettier formatting
+# Build and output folders
 /dist
 /coverage
+/build
+/out-tsc
 /.nx/cache
 /.nx/workspace-data
-.angular
+/storybook-static
+
+# Node, IDE, and tool folders
+/node_modules
+/.angular
+/.vscode
+/.idea
+/.env
+/.cache
+/tmp
+
+# System/lock files
+*.log
+*.lock
+*.min.js

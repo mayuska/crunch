@@ -9,7 +9,7 @@ export interface FilesEntity {
   /** Dis */
   displayName: string;
   /** The description of the json file */
-  description: string;
+  description?: string;
   /** Is the content of the file valid */
   valid: boolean;
   /** The actual content of the json file */

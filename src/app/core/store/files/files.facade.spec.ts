@@ -7,8 +7,8 @@ import { firstValueFrom } from 'rxjs';
 import * as FilesActions from './files.actions';
 import { FilesEffects } from './files.effects';
 import { FilesFacade } from './files.facade';
-import { FilesEntity } from './files.models';
-import { FILES_FEATURE_KEY, FilesState, initialFilesState, reducer } from './files.reducer';
+import { FilesEntity, FilesState } from './files.models';
+import { FILES_FEATURE_KEY, initialFilesState, reducer } from './files.reducer';
 import * as FilesSelectors from './files.selectors';
 
 interface TestSchema {
@@ -20,7 +20,10 @@ describe('FilesFacade', () => {
   let store: Store<TestSchema>;
   const createFilesEntity = (id: string, name = ''): FilesEntity => ({
     id: id,
-    name: name || `name-${id}`
+    name: name || `name-${id}`,
+    displayName: `displayName-${id}`,
+    valid: true,
+    content: null
   });
 
   describe('used in NgModule', () => {
