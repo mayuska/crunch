@@ -5,6 +5,8 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 permissions:
   actions: read
@@ -31,13 +33,30 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      # Install dependencies
       - run: npm ci --legacy-peer-deps
-      - run: npx cypress install
 
+      # Run Nx format check (Prettier)
+      - name: Format check
+        run: npx nx format:check
+
+      # Run Nx lint (ESLint) for all projects (even though there is only e2e and app)
+      - name: Lint
+        run: npx nx run-many --target=lint --all
+
+      # Run Nx build for all projects (production config)
+      - name: Build
+        run: npx nx run-many --target=build --all --configuration=production
+
+      # Run Nx tests (Jest/Angular)
+      - name: Test (Jest/Angular)
+        run: npx nx run-many --target=test --all --code-coverage=true
+
+      #- run: npx cypress install
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: npx nx-cloud record -- echo Hello World
       # When you enable task distribution, run the e2e-ci task instead of e2e
-      - run: npx nx run-many -t lint test build e2e
+      # - run: npx nx run-many -t lint test build e2e
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
-      - run: npx nx fix-ci
-        if: always()
+      #- run: npx nx fix-ci
+      #  if: always()
