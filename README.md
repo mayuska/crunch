@@ -1,17 +1,21 @@
 # Crunch
+
 ## Table of content
+
 1. [Intro](#intro)
 2. [Dependencies](#dependencies)
 3. [Development & Testing](#development)
 4. [Features](#features)
 
-
 ## Intro
+
 <a name="intro"></a>
 Crunch is a lightweight and efficient web application for uploading, managing, and organizing your files with an intuitive interface.
 
 ## Dependencies
+
 <a name="dependencies"></a>
+
 ```json
 {
   "@angular/common": "~20.3.0",
@@ -37,7 +41,9 @@ Crunch is a lightweight and efficient web application for uploading, managing, a
 ```
 
 ## Development & Testing
+
 <a name="development"></a>
+
 ```bash
 # Install dependencies
 npm install
@@ -53,22 +59,30 @@ npm run storybook
 ```
 
 ## Features
+
 <a name="features"></a>
+
 ### **Welcome Page**
+
 Upload JSON files through a modal dialog, providing a name and a description.
 
 ### **File List Page**
+
 Displays uploaded files with:
+
 - File validity indicator (valid / not valid)
 - Delete confirmation dialog
 - File counter showing number of uploaded items
 
 ### **Upload Validation**
+
 The files are automatically validated to ensure they're proper JSON format.
 Form inputs are checked in a real-time to keep everything clean and error-free.
 
 ### **Persistence**
+
 All uploaded files are automatically stored in the browser's local storage and restored on reload. No server required.
 
 ### **Navigation**
+
 Lazy-loaded routes between pages for better performance.
