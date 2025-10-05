@@ -15,7 +15,6 @@ console.log('🔍 Checking if your branch is ready to push...');
 
 // Run format check
 runCommand('npx nx format:check', 'Format check (Prettier)');
-
 // Run lint, test and build
 runCommand('npx nx run-many -t lint test build', 'Build - test - lint');
 
