@@ -1,16 +1,5 @@
 {
   "version": 2,
   "public": "dist/crunch/browser",
-  "builds": [
-    {
-      "src": "dist/crunch/browser/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
