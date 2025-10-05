@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FilesEntity } from '../../../core/store/files/files.models';
 import { FilesFacade } from '../../../core/store/files/files.facade';
+import { descriptionPatternValidator, namePatternValidator } from '../../validators/form-control.validator';
 
 @Component({
   selector: 'crunch-upload-dialog',
@@ -11,13 +12,14 @@ import { FilesFacade } from '../../../core/store/files/files.facade';
   styleUrl: './upload-dialog.component.scss'
 })
 export class UploadDialogComponent {
+  public readonly GITHUB_USERNAME = 'mayuska';
   /** Facade for files state management */
   protected readonly filesFacade = inject(FilesFacade);
 
   protected form = new FormGroup({
     file: new FormControl(null, Validators.required),
-    displayName: new FormControl('', Validators.required),
-    description: new FormControl('')
+    displayName: new FormControl('', [Validators.required, Validators.maxLength(32), namePatternValidator(this.GITHUB_USERNAME)]),
+    description: new FormControl('', [Validators.maxLength(128), descriptionPatternValidator(this.GITHUB_USERNAME)])
   });
 
   private ngbActiveModal = inject(NgbActiveModal);

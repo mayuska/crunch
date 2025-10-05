@@ -25,4 +25,10 @@ th {
   font-size: 16px;
 }
 
-
+ngb-pagination {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+}

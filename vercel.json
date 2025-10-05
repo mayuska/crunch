@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "public": "dist/crunch/browser",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { UploadDialogComponent } from './upload-dialog.component';
 import { FilesFacade } from '../../../core/store/files/files.facade';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,12 +12,12 @@ describe('UploadDialogComponent', () => {
     if (!window.crypto) {
       (window as any).crypto = {};
     }
-    window.crypto.randomUUID = jest.fn(() => 'mock-uuid');
-
-    (window as any).FileReader = jest.fn(() => fileReaderMock);
+    window.crypto.randomUUID = jest.fn(() => 'mock-uuid' as any);
   });
 
   beforeEach(async () => {
+    jest.clearAllMocks();
+
     await TestBed.configureTestingModule({
       imports: [UploadDialogComponent],
       providers: [
@@ -29,6 +29,14 @@ describe('UploadDialogComponent', () => {
     fixture = TestBed.createComponent(UploadDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  beforeEach(() => {
+    component['form'].patchValue({
+      file: '',
+      displayName: '42c-mayuska-1',
+      description: 'Test Description'
+    });
   });
 
   it('should create', () => {
@@ -48,26 +56,33 @@ describe('UploadDialogComponent', () => {
       valid: false,
       expectedContent: null
     }
-  ])('should handle $name correctly', ({ content, valid, expectedContent }) => {
-    const fakeFile = new Blob([content], { type: 'application/json' }) as File;
-    Object.defineProperty(fakeFile, 'name', { value: 'test.json' });
+  ])(
+    'should handle $name correctly',
+    fakeAsync(({ content, valid, expectedContent }) => {
+      const fakeFile = new Blob([content], { type: 'application/json' }) as File;
+      Object.defineProperty(fakeFile, 'name', { value: 'test.json' });
 
-    component['form'].patchValue({
-      file: fakeFile,
-      displayName: 'Test File',
-      description: ''
-    });
+      component['form'].patchValue({ file: fakeFile });
+      tick();
 
-    component.upload();
-    fileReaderMock.onload?.({ target: { result: content } });
+      jest.spyOn(FileReader.prototype, 'readAsText').mockImplementation(function (this: FileReader, file: File) {
+        if (this.onload) {
+          setTimeout(() => this.onload!({ target: { result: content } } as any), 0);
+        }
+      });
 
-    expect(filesFacadeMock.addFile).toHaveBeenCalledWith(
-      expect.objectContaining({
-        valid,
-        content: expectedContent
-      })
-    );
-  });
+      component.upload();
+      tick(); // let the onload setTimeout execute
+
+      expect(filesFacadeMock.addFile).toHaveBeenCalledWith(
+        expect.objectContaining({
+          valid,
+          content: expectedContent
+        })
+      );
+      expect(ngbActiveModalMock.close).toHaveBeenCalledWith(true);
+    })
+  );
 });
 
 const filesFacadeMock = {
@@ -76,9 +91,4 @@ const filesFacadeMock = {
 
 const ngbActiveModalMock = {
   close: jest.fn()
-};
-
-const fileReaderMock = {
-  readAsText: jest.fn(),
-  onload: null as any
 };

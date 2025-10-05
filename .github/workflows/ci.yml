@@ -40,17 +40,17 @@ jobs:
       - name: Format check
         run: npx nx format:check
 
-      # Run Nx lint (ESLint) for all projects (even though there is only e2e and app)
+      # Lint the crunch project
       - name: Lint
-        run: npx nx run-many --target=lint --all
+        run: npx nx lint crunch
 
-      # Run Nx build for all projects (production config)
+      # Build the crunch project (production configuration)
       - name: Build
-        run: npx nx run-many --target=build --all --configuration=production
+        run: npx nx build crunch --configuration=production
 
-      # Run Nx tests (Jest/Angular)
+      # Run tests with coverage for the crunch project
       - name: Test (Jest/Angular)
-        run: npx nx run-many --target=test --all --code-coverage=true
+        run: npx nx test crunch --code-coverage
 
       #- run: npx cypress install
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud

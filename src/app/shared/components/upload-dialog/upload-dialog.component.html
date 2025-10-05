@@ -26,9 +26,17 @@
               formControlName="displayName"
               [class.is-invalid]="form.get('displayName')?.touched && form.get('displayName')?.invalid"
             />
+            @if (form.get('displayName')?.errors?.invalidChars) {
+              Name can only contain letters, numbers, underscores, and dashes.
+            } @else if (form.get('displayName')?.errors?.missingPattern) {
+              Name must contain '42c-{{ GITHUB_USERNAME }}'.
+            }
           </div>
           <div class="mb-1">
             <input type="text" class="form-control" placeholder="Description" formControlName="description" />
+            @if (form.get('description')?.errors?.forbiddenPattern) {
+              Description must not contain '42c-{{ GITHUB_USERNAME }}'.
+            }
           </div>
         </div>
         <div class="modal-footer justify-content-end">

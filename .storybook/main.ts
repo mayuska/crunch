@@ -5,8 +5,8 @@ const config: StorybookConfig = {
   addons: [],
   framework: {
     name: '@storybook/angular',
-    options: {},
-  },
+    options: {}
+  }
 };
 
 export default config;

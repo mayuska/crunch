@@ -13,7 +13,7 @@ export interface FilesEntity {
   /** Is the content of the file valid */
   valid: boolean;
   /** The actual content of the json file */
-  content: any;
+  content?: any;
 }
 
 export interface FilesState extends EntityState<FilesEntity> {
