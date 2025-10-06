@@ -7,11 +7,11 @@ export default defineConfig({
       cypressDir: 'src',
       webServerCommands: {
         default: 'npx nx run crunch:serve',
-        production: 'npx nx run crunch:serve-static',
+        production: 'npx nx run crunch:serve-static'
       },
       ciWebServerCommand: 'npx nx run crunch:serve-static',
-      ciBaseUrl: 'http://localhost:4200',
+      ciBaseUrl: 'http://localhost:4200'
     }),
-    baseUrl: 'http://localhost:4200',
-  },
+    baseUrl: 'http://localhost:4200'
+  }
 });

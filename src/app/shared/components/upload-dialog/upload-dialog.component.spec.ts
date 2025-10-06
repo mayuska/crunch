@@ -65,9 +65,9 @@ describe('UploadDialogComponent', () => {
       component['form'].patchValue({ file: fakeFile });
       tick();
 
-      jest.spyOn(FileReader.prototype, 'readAsText').mockImplementation(function (this: FileReader, file: File) {
+      jest.spyOn(FileReader.prototype, 'readAsText').mockImplementation(function (this: FileReader) {
         if (this.onload) {
-          setTimeout(() => this.onload!({ target: { result: content } } as any), 0);
+          setTimeout(() => this.onload?.({ target: { result: content } } as any), 0);
         }
       });
 

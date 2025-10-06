@@ -38,6 +38,7 @@ export class FilesEffects {
       this.actions$.pipe(
         ofType(FilesActions.loadFilesSuccess, FilesActions.addFile, FilesActions.deleteFile),
         withLatestFrom(this.store.select(selectAllFiles)),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         tap(([_, files]) => {
           localStorage.setItem(FILES_KEY, JSON.stringify(files));
         })

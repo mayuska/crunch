@@ -8,8 +8,7 @@ import * as FilesActions from './files.actions';
 import { FilesEffects } from './files.effects';
 import { FilesFacade } from './files.facade';
 import { FilesEntity, FilesState } from './files.models';
-import { FILES_FEATURE_KEY, initialFilesState, reducer } from './files.reducer';
-import * as FilesSelectors from './files.selectors';
+import { FILES_FEATURE_KEY, reducer } from './files.reducer';
 
 interface TestSchema {
   files: FilesState;
