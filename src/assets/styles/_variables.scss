@@ -5,20 +5,19 @@ body {
   --bs-success-rgb: 40, 167, 69;
 
   .card {
-    --bs-card-border-color: #DEE2E6;
+    --bs-card-border-color: #dee2e6;
   }
 
   .table {
-    --bs-table-hover-bg: #F8FBFF;
+    --bs-table-hover-bg: #f8fbff;
 
     .table-danger {
-      --bs-table-hover-bg: #FFFAFA;
+      --bs-table-hover-bg: #fffafa;
     }
   }
-  .pagination{
+  .pagination {
     --bs-pagination-active-bg: rgb(var(--bs-primary-rgb));
   }
-
 
   .btn {
     --bs-btn-font-weight: 600;
@@ -27,6 +26,6 @@ body {
     --bs-btn-bg: rgb(var(--bs-primary-rgb));
   }
   .btn-close {
-    --bs-btn-close-color: #aaaaaa
+    --bs-btn-close-color: #aaaaaa;
   }
 }

@@ -1,8 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
-
+import { select, Store } from '@ngrx/store';
 import * as FilesActions from './files.actions';
-import * as FilesFeature from './files.reducer';
 import * as FilesSelectors from './files.selectors';
 import { FilesEntity } from './files.models';
 import { map } from 'rxjs';

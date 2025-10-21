@@ -1,82 +1,88 @@
 # Crunch
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+## Table of content
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+1. [Intro](#intro)
+2. [Dependencies](#dependencies)
+3. [Development & Testing](#development)
+4. [Features](#features)
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Intro
 
-## Finish your CI setup
+<a name="intro"></a>
+Crunch is a lightweight and efficient web application for uploading, managing, and organizing your files with an intuitive interface.
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/v12Ckx9INH)
+## Dependencies
 
+<a name="dependencies"></a>
 
-## Run tasks
-
-To run the dev server for your app, use:
-
-```sh
-npx nx serve crunch
+```json
+{
+  "@angular/common": "~20.3.0",
+  "@angular/compiler": "~20.3.0",
+  "@angular/core": "~20.3.0",
+  "@angular/forms": "~20.3.0",
+  "@angular/localize": "^20.3.2",
+  "@angular/platform-browser": "~20.3.0",
+  "@angular/platform-browser-dynamic": "~20.3.0",
+  "@angular/router": "~20.3.0",
+  "@ng-bootstrap/ng-bootstrap": "^19.0.1",
+  "@ngrx/component-store": "^20.0.0",
+  "@ngrx/effects": "^20.0.0",
+  "@ngrx/entity": "^20.0.0",
+  "@ngrx/router-store": "^20.0.0",
+  "@ngrx/store": "^20.0.1",
+  "@popperjs/core": "^2.11.8",
+  "bootstrap": "^5.3.8",
+  "bootstrap-icons": "^1.13.1",
+  "rxjs": "~7.8.0",
+  "zone.js": "~0.15.0"
+}
 ```
 
-To create a production bundle:
+## Development & Testing
 
-```sh
-npx nx build crunch
+<a name="development"></a>
+
+```bash
+# Install dependencies
+npm install
+
+# Run all branch checks (format, lint, test, build)
+npm run verify
+
+# Run locally
+npm run start
+
+# Storybook preview
+npm run storybook
 ```
 
-To see all available targets to run for a project, run:
+## Features
 
-```sh
-npx nx show project crunch
-```
+<a name="features"></a>
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### **Welcome Page**
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Upload JSON files through a modal dialog, providing a name and a description.
 
-## Add new projects
+### **File List Page**
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+Displays uploaded files with:
 
-Use the plugin's generator to create new projects.
+- File validity indicator (valid / not valid)
+- Delete confirmation dialog
+- File counter showing number of uploaded items
 
-To generate a new application, use:
+### **Upload Validation**
 
-```sh
-npx nx g @nx/angular:app demo
-```
+The files are automatically validated to ensure they're proper JSON format.
+Form inputs are checked in a real-time to keep everything clean and error-free.
 
-To generate a new library, use:
+### **Persistence**
 
-```sh
-npx nx g @nx/angular:lib mylib
-```
+All uploaded files are automatically stored in the browser's local storage and restored on reload. No server required.
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+### **Navigation**
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Lazy-loaded routes between pages for better performance.

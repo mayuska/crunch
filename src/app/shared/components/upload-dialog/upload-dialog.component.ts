@@ -38,10 +38,13 @@ export class UploadDialogComponent {
       const fileInput = values.file as File;
       const reader = new FileReader();
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       reader.onload = (e: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let parsedContent: any;
         try {
           parsedContent = JSON.parse(e.target.result);
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
           parsedContent = null;
         }

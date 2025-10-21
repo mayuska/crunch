@@ -1,4 +1,4 @@
-import { Component, input, ViewChild, viewChild } from '@angular/core';
+import { Component, input, viewChild } from '@angular/core';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { TableRowComponent } from './table-row.component';
 import { FilesEntity } from '../../../core/store/files/files.models';

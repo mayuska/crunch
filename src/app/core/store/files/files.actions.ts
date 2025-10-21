@@ -5,6 +5,7 @@ export const initFiles = createAction('[Files Page] Init');
 
 export const loadFilesSuccess = createAction('[Files/API] Load Files Success', props<{ files: FilesEntity[] }>());
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const loadFilesFailure = createAction('[Files/API] Load Files Failure', props<{ error: any }>());
 
 export const addFile = createAction('[Files/API] Add File', props<{ file: FilesEntity }>());

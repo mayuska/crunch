@@ -4,6 +4,6 @@ export default [
   cypress.configs['recommended'],
   {
     // Override or add rules here
-    rules: {},
-  },
+    rules: {}
+  }
 ];

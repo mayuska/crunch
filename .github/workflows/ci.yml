@@ -18,7 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          filter: tree:0
           fetch-depth: 0
 
       # This enables task distribution via Nx Cloud
@@ -38,7 +37,7 @@ jobs:
 
       # Run Nx format check (Prettier)
       - name: Format check
-        run: npx nx format:check
+        run: npx nx format:check --all
 
       # Lint the crunch project
       - name: Lint

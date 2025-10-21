@@ -13,6 +13,7 @@ export interface FilesEntity {
   /** Is the content of the file valid */
   valid: boolean;
   /** The actual content of the json file */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   content?: any;
 }
 

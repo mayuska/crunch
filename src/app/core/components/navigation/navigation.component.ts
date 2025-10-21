@@ -8,7 +8,7 @@ import { DomService } from '../../../shared/services/dom.service';
   selector: 'crunch-navigation',
   imports: [RouterLink, CommonModule, SafeHtmlPipe],
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.css'
+  styleUrl: './navigation.component.scss'
 })
 export class NavigationComponent {
   private domService = inject(DomService);
