@@ -1,16 +1,13 @@
 {
   "version": 2,
-  "public": "dist/crunch/browser",
-  "builds": [
+  "outputDirectory": "dist/crunch//browser",
+  "routes": [
     {
-      "src": "dist/crunch/browser/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "rewrites": [
+      "handle": "filesystem"
+    },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }
